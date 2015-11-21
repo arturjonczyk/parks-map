@@ -1,0 +1,135 @@
+/* Box-sizing border-box */
+* {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+/****** GENERAL STRUCTURE ******/
+.container {
+	display: flex;
+	flex-direction: column;
+}
+.header {
+  display: flex;
+	height: 52px;
+	background-color: #1abc9c;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.6em;
+}
+
+.filter {
+  position: absolute;
+  top: 0;
+  left: -240px;
+  width: 300px;
+  min-height: 100vh;
+  background-color: #9b59b6;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  z-index: 10;
+}
+
+.filter-open {
+  left: 0px;
+}
+
+.map {
+	/*display: flex;
+	flex-direction: row;*/
+	min-height: calc(100vh - 52px);
+}
+
+/*.search__result-open {
+	position: absolute;
+	top: 0;
+	left: -300px;
+	width: 300px;
+	height: 100%;
+	background-color: #9b59b6;
+	-webkit-transition: all 0.4s ease-in-out;
+  	transition: all 0.4s ease-in-out;
+  	z-index: 10;
+
+}*/
+.filter-open {
+	left: 0px;
+}
+
+.map {
+	width: 100%;
+	background-color: #f1c40f;
+	text-align: center;
+}
+/****** END GENERAL STRUCTURE ******/
+
+/****** HEADER - HAMBURGER ******/
+.header__menu {
+  position: absolute;
+  top: 12px;
+  right: 46px;
+}
+
+.hamburger {
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 40px;
+  z-index: 2;
+}
+
+.hamburger__inner {
+  display: block;
+  width: 30px;
+  height: 5px;
+  margin-top: 10px;
+  background: #FFF;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+.hamburger__inner::before, .hamburger__inner::after {
+  display: block;
+  position: absolute;
+  content: "";
+  z-index: -1;
+  width: 30px;
+  height: 5px;
+  background: #FFF;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+.hamburger__inner::before {
+  top: 0;
+}
+.hamburger__inner::after {
+  top: 20px;
+}
+
+.hamburger--open .hamburger__inner {
+  background: none;
+}
+.hamburger--open .hamburger__inner::before, .hamburger--open .hamburger__inner::after {
+  top: 8px;
+}
+.hamburger--open .hamburger__inner::before {
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.hamburger--open .hamburger__inner::after {
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+/****** END HEADER - HAMBURGER ******/
