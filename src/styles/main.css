@@ -1,4 +1,6 @@
 /*
+
+COLORS:
 #f3f3f3
 #9b59b6
 #1abc9c
@@ -22,6 +24,29 @@
   min-height: 100vh;
 }
 
+.header {
+  display: flex;
+  background-color: #272B33;
+  margin-left: 50px;
+  height: 78px;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar .header {
+  margin-left: 0px;
+}
+
+.header h1 {
+  text-align: center;
+  color: #f9f9f9;
+  margin: 0;
+}
+
+.header h1 span {
+  font-size: 0.5em;
+}
+
 
 /* SIDEBAR */
 .sidebar {
@@ -34,9 +59,16 @@
 /* CONTENT */
 .content {
   flex: 1;
+  width: 100vw;
+  height: 100vh;
   background: #fff;
   transform: translate3d(0,0,0);
   transition: transform .4s;
+}
+
+.content .map {
+  margin-left: 50px;
+  min-height: 100vh;
 }
 
 .content.is-open {
@@ -52,9 +84,7 @@
   background: #f3f3f3;
 }
 
-h1 {
-  text-align: center;
-}
+
 
 /************ HAMBURGER BUTTON ***********/
 #content__hamburger-button {
