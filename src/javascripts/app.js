@@ -1,6 +1,14 @@
 var GreenAreas = (function () {
 	/* add members here */
 
+	var forsquare = 'https://api.foursquare.com/v2/venues/search?client_id=S4MJQVOCIMBUSAOVW2QBVCKRJOXTF4YWKH5RV0MJHBJXHF4Y&client_secret=TUO4VBINMCXUKAGCTWTAERQSAOWOQLV1WXP52WPH0PUERBTG&v=20130815&query=parks'
+
+  	$.ajax(forsquare, {
+  		success: function (response) {
+  			console.log(response);
+  		}
+  	})
+
 	var openCloseSidebar = function (self) {
 		$(self).toggleClass('open');
 		$('.content').toggleClass('is-open');
