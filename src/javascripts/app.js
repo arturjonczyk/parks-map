@@ -1,13 +1,41 @@
 var GreenAreas = (function () {
 	/* add members here */
+	var lat = 52.2187648;
+	var lng = 21.0354383
+	var forsquare = '';
+		forsquare += 'https://api.foursquare.com/v2/venues/search';
+		forsquare += '?client_id=S4MJQVOCIMBUSAOVW2QBVCKRJOXTF4YWKH5RV0MJHBJXHF4Y';
+  		forsquare += '&client_secret=TUO4VBINMCXUKAGCTWTAERQSAOWOQLV1WXP52WPH0PUERBTG';
+  		forsquare += '&v=20130815';
+  		forsquare += '&ll=' + lat + ',' + lng;
+  		forsquare += '&query=parks';
 
-	var forsquare = 'https://api.foursquare.com/v2/venues/search?client_id=S4MJQVOCIMBUSAOVW2QBVCKRJOXTF4YWKH5RV0MJHBJXHF4Y&client_secret=TUO4VBINMCXUKAGCTWTAERQSAOWOQLV1WXP52WPH0PUERBTG&v=20130815&query=parks'
+  	var Park = function (name) {
+  		this.name = name;
+  		this.address = address;
+  		this.lat = lat;
+  		this.lng = lng;
+  	}
+
+  	var displayParksOnMap = function (parks) {
+  		console.log(parks);
+  	};
+
+  	var parks = [];
 
   	$.ajax(forsquare, {
-  		success: function (response) {
-  			console.log(response);
-  		}
-  	})
+  		success: function (e) {
+  			for (var i = 0; i < e.response.venues.length; i++) {
+  				console.log(e.response.venues[i]);
+  				parks.push(e.response.venues[i]);
+  			}
+  		},
+  		error: function (request, errorType, errorMessage) {
+  			console.log('Error: ' + errorType + ' with message: ' + errorMessage);
+  		},
+  		timeout: 5000,
+  		complete: displayParksOnMap(parks)
+  	});
 
 	var openCloseSidebar = function (self) {
 		$(self).toggleClass('open');
@@ -25,7 +53,8 @@ var GreenAreas = (function () {
 
 	/********* MAP **********/
 	var map;
-	var cityWarsaw = {lat: 52.2187648, lng: 21.0354383};
+	
+	var cityWarsaw = {lat: lat, lng: lng};
 
 	var initMap = function() {
 	    var mapId = document.getElementById('map');
@@ -55,7 +84,7 @@ var GreenAreas = (function () {
 
 	/********* PUBLIC FUNCTIONS **********/
 	return {
-		
+		parks: parks
 	};
 	/********* END PUBLIC FUNCTIONS **********/
 
