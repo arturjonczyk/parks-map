@@ -8,7 +8,7 @@ var GreenAreas = (function () {
   		forsquare += '&client_secret=TUO4VBINMCXUKAGCTWTAERQSAOWOQLV1WXP52WPH0PUERBTG';
   		forsquare += '&v=20130815';
   		forsquare += '&ll=' + lat + ',' + lng;
-  		forsquare += '&query=parks';
+  		forsquare += '&query=park';
 
   	var Park = function (name) {
   		this.name = name;
@@ -16,25 +16,49 @@ var GreenAreas = (function () {
   		this.lat = lat;
   		this.lng = lng;
   	}
-
-  	var displayParksOnMap = function (parks) {
-  		console.log(parks);
-  	};
-
   	var parks = [];
+  	var markers = [];
+
+  	function addMarker(location, parkName) {
+  		var infowindow = new google.maps.InfoWindow({
+    		content: '<div><h3>' + parkName + '</h3><p>' + location.lat + ' | ' + location.lng + '</p></div>'
+  		});
+
+  		var marker = new google.maps.Marker({
+    		position: location,
+    		map: map
+  		});
+  		marker.addListener('click', function() {
+    		infowindow.open(map, marker);
+  		});
+  		markers.push(marker);
+	}
+
+  	var displayParksOnMap = function () {
+  		for(var i = 0; i < parks.length; i++) {
+  			var myLatLng = {lat: parks[i].location.lat, lng: parks[i].location.lng};
+  			var parkName = parks[i].name;
+  			addMarker(myLatLng, parkName);
+  		}
+  	};
 
   	$.ajax(forsquare, {
   		success: function (e) {
+  			console.log(e);
   			for (var i = 0; i < e.response.venues.length; i++) {
-  				console.log(e.response.venues[i]);
-  				parks.push(e.response.venues[i]);
+  				var elem = e.response.venues[i];
+  				parks.push({
+  					name: elem.name,
+  					location: elem.location
+  				});
+  				// console.log(elem.name);
+  				// console.log(elem.location.lat, " ", elem.location.lng);
   			}
   		},
   		error: function (request, errorType, errorMessage) {
   			console.log('Error: ' + errorType + ' with message: ' + errorMessage);
   		},
-  		timeout: 5000,
-  		complete: displayParksOnMap(parks)
+  		complete: displayParksOnMap
   	});
 
 	var openCloseSidebar = function (self) {
@@ -84,7 +108,9 @@ var GreenAreas = (function () {
 
 	/********* PUBLIC FUNCTIONS **********/
 	return {
-		parks: parks
+		parks: parks,
+		displayParksOnMap: displayParksOnMap,
+		markers: markers
 	};
 	/********* END PUBLIC FUNCTIONS **********/
 
