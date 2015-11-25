@@ -68,7 +68,7 @@ COLORS:
 
 .content .map {
   margin-left: 50px;
-  min-height: 100vh;
+  min-height: calc(100% - 78px);
 }
 
 .content.is-open {
@@ -83,8 +83,6 @@ COLORS:
   min-height: 100vh;
   background: #f3f3f3;
 }
-
-
 
 /************ HAMBURGER BUTTON ***********/
 #content__hamburger-button {
