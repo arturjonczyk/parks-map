@@ -6,13 +6,24 @@ var GreenAreas = (function () {
   	var parks = [];
   	var markers = [];
 
-  	function addMarker(location, parkName) {
+  	function addMarker(park) {
+  		var parkName = park.name,
+  			parkLocation = {lat: park.location.coordinate.lat, lng: park.location.coordinate.lng},
+  			parkImage = park.image_url,
+  			parkRanking = park.rating,
+  			parkUrl = park.urls;
+
+  		var infoContent = '<div>';
+  			infoContent += '<h2>' + parkName + '</h2>';
+  			infoContent += '<img src="' + parkImage + '" alt="' + parkName + '"></img>';
+  			infoContent += '</div>';
+
   		var infowindow = new google.maps.InfoWindow({
-    		content: '<div><h3>' + parkName + '</h3><p>' + location.lat + ' | ' + location.lng + '</p></div>'
+    		content: infoContent
   		});
 
   		var marker = new google.maps.Marker({
-    		position: location,
+    		position: parkLocation,
     		map: map
   		});
   		marker.addListener('click', function() {
@@ -23,18 +34,45 @@ var GreenAreas = (function () {
 
   	var displayParksOnMap = function (parks) {
   		for(var i = 0; i < parks.length; i++) {
-  			// console.log(parks[i]);
-  			var myLatLng = {lat: parks[i].location.coordinate.latitude, lng: parks[i].location.coordinate.longitude};
+  			var myLatLng = {lat: parks[i].location.coordinate.lat, lng: parks[i].location.coordinate.lng};
   			var parkName = parks[i].name;
-  			addMarker(myLatLng, parkName);
+  			addMarker(parks[i]);
   		}
+  	};
+
+  	var addParks = function (results) {
+  		for(var i = 0; i < results.businesses.length; i++) {
+  			var park = results.businesses[i];
+  			parks.push({
+  				name: park.name,
+  				image_url: park.image_url,
+  				rating: {
+  					score: park.rating,
+  					score_img: park.rating_img_url
+  				},
+  				urls: {
+  					desktop: park.url,
+  					mobile: park.mobile_url
+  				},
+  				location: {
+  					city: park.location.city,
+  					coordinate: {
+  						lat: park.location.coordinate.latitude,
+  						lng: park.location.coordinate.longitude,
+  					},
+  					display_address: park.location.display_address
+  				}
+
+  			});
+  		};
+  		displayParksOnMap(parks);
   	};
 
   	function nonce_generate() {
     	return (Math.floor(Math.random() * 1e12).toString());
 	}
 
-	var YELP_URL = 'https://api.yelp.com/v2/search',
+	var YELP_URL = 'https://api.yelp.com/v2/search/',
 	    YELP_KEY = "CtLhQCQjIEPDX_lI1Hdb6A",
 	    YELP_KEY_SECRET = "Y_W4_bV_nD8mDbIzu7Hby97cCU8",
 	    YELP_TOKEN = "dMX4bX9dH57c_KhzGRIPgIvirOoMgVfe",
@@ -47,9 +85,12 @@ var GreenAreas = (function () {
 	    oauth_timestamp: Math.floor(Date.now() / 1000),
 	    oauth_signature_method: 'HMAC-SHA1',
 	    oauth_version: '1.0',
-	    callback: 'cb', // This is crucial to include for jsonp implementation in AJAX or else the oauth-signature will be wrong.
-	    term: "park",
-	    location: 'Warsaw, Poland'
+	    // This is crucial to include for jsonp implementation in
+	    // AJAX or else the oauth-signature will be wrong.
+	    callback: 'cb',
+	    category_filter: 'parks',
+	    term: "parks",
+	    location: 'Warsaw, Poland',
 	};
 
 	var encodedSignature = oauthSignature.generate('GET', YELP_URL, parameters, YELP_KEY_SECRET, YELP_TOKEN_SECRET);
@@ -58,10 +99,12 @@ var GreenAreas = (function () {
 	var settings = {
 	    url: YELP_URL,
 	    data: parameters,
-	    cache: true, // This is crucial to include as well to prevent jQuery from adding on a cache-buster parameter "_=23489489749837", invalidating our oauth-signature
+	    // This is crucial to include as well to prevent jQuery from adding
+	    // on a cache-buster parameter "_=23489489749837", invalidating our oauth-signature
+	    cache: true,
 	    dataType: 'jsonp',
 	    success: function(results) {
-	        displayParksOnMap(results.businesses);
+	    	addParks(results);
 	    },
 	    error: function() {
 	        console.log('Not Working...');
@@ -94,11 +137,12 @@ var GreenAreas = (function () {
 	    var mapId = document.getElementById('map');
 	    var mapOptions = {
 	        center: cityWarsaw,
-	        zoom: 12,
+	        zoom: 11,
 
 	        //Limit min/max zoom
-	        minZoom: 2,
-	        maxZoom: 18,
+	        minZoom: 4,
+	        maxZoom: 16,
+	        scrollwheel: false
 		};
 		map = new google.maps.Map(mapId, mapOptions);
 	};
