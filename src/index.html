@@ -15,9 +15,9 @@
 				<h1>SIDEBAR</h1>
 			</div>
 		</div>
-		<div class="content">
+		<div class="content" data-bind="css: {'is-open' : isOpen}">
 			<div class="content__hamburger-area">
-				<div id="content__hamburger-button">
+				<div id="content__hamburger-button" data-bind="click: toggleOpen, css : {'open' : isOpen}">
   					<span></span>
   					<span></span>
   					<span></span>
@@ -36,6 +36,9 @@
 	<script type="text/javascript" src="javascripts/lib/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="javascripts/lib/oauth-signature.min.js"></script>
 	<script type="text/javascript" src="javascripts/lib/knockout-3.3.0.min.js"></script>
+	<script type="text/javascript" src="javascripts/api/Yelp.js"></script>
+	<script type="text/javascript" src="javascripts/Map.js"></script>
+	<script type="text/javascript" src="javascripts/Park.js"></script>
 	<script type="text/javascript" src="javascripts/app.js"></script>
 </body>
 </html>
