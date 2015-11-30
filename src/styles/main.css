@@ -7,6 +7,12 @@ COLORS:
 #f1c40f
  */
 
+h1, h2, h3, h4, div, ul, li {
+  margin: 0;
+  padding: 0;
+
+}
+
 /* Box-sizing border-box */
 * {
   -moz-box-sizing: border-box;
@@ -22,9 +28,11 @@ COLORS:
 .container {
   display: flex;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
-.header {
+.content-header,
+.sidebar-header {
   display: flex;
   background-color: #272B33;
   margin-left: 50px;
@@ -33,27 +41,57 @@ COLORS:
   align-items: center;
 }
 
-.sidebar .header {
+.sidebar-header {
   margin-left: 0px;
 }
 
-.header h1 {
+.content-header h1,
+.sidebar-header h1 {
   text-align: center;
   color: #f9f9f9;
   margin: 0;
 }
 
-.header h1 span {
+.content-header h1 span {
   font-size: 0.5em;
 }
-
 
 /* SIDEBAR */
 .sidebar {
   position: absolute;
   width: 260px;
-  min-height: 100vh;
-  background: #1abc9c;
+  height: 100vh;
+  background: #FEFEFDc;
+}
+
+.sidebar-content {
+  height: calc(100vh - 78px);
+  overflow-y: scroll;
+  background: #FBFBFB;
+}
+
+.sidebar-content h3 {
+  color: #505050;
+  font-size: 16px;
+  margin: 0;
+}
+
+.sidebar-content ul {
+  padding: 0;
+}
+
+.sidebar-content li {
+  list-style: none;
+  border-bottom: 1px solid #D3D0C9;
+  padding: 16px 0 10px 16px;
+}
+
+.sidebar-content li:hover {
+  background: #F9F7F1;
+}
+.sidebar-content li:active {
+  background: #F4F2EC;
+  border-bottom: 1px solid #E0DDD6;
 }
 
 /* CONTENT */

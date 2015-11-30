@@ -37,7 +37,7 @@ var Yelp = function() {
 		cache: true,
 		dataType: 'jsonp',
 		success: function(results) {
-			GreenAreas.addParks(results);
+			addResults(results);
 
 		},
 		error: function() {

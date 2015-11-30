@@ -1,14 +1,21 @@
-var map,
-	warsawCityLocation = {lat: 52.2187648, lng: 21.0354383},
-	mapOptions = {
-		center: warsawCityLocation,
-    	zoom: 11,
-		minZoom: 4,
-    	maxZoom: 16,
-    	scrollwheel: false
-	},
-	mapId = document.getElementById('map');
+var Map = function() {
 
-var initMap = function() {
-	map = new google.maps.Map(mapId, mapOptions);
-};
+	var mapOptions = {
+		center: '',
+		zoom: 11,
+		minZoom: 4,
+		maxZoom: 16,
+		scrollwheel: false
+	};
+
+	var mapId = document.getElementById('map');
+
+	var init = function(location) {
+		mapOptions.center = location;
+		map = new google.maps.Map(mapId, mapOptions);
+	};
+
+	return {
+		init: init
+	};
+}();

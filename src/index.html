@@ -11,9 +11,18 @@
 <body>
 	<div class="container">
 		<div class="sidebar">
-			<div class="header">
+			<div class="sidebar-header">
 				<h1>SIDEBAR</h1>
 			</div>
+			<div class="sidebar-content">
+				<ul data-bind="foreach: parks">
+					<li>
+						<h3 data-bind="text: name"></h3>
+						<img data-bind="attr: {src: ratingImg}">
+					</li>
+				</ul>
+			</div>
+			
 		</div>
 		<div class="content" data-bind="css: {'is-open' : isOpen}">
 			<div class="content__hamburger-area">
@@ -23,7 +32,7 @@
   					<span></span>
 				</div>
 			</div>
-			<div class="header">
+			<div class="content-header">
 				<h1>GREEN AREAS <span>Warsaw</span> </h1>
 			</div>
 			<div id="map" class="map">
@@ -38,7 +47,7 @@
 	<script type="text/javascript" src="javascripts/lib/knockout-3.3.0.min.js"></script>
 	<script type="text/javascript" src="javascripts/api/Yelp.js"></script>
 	<script type="text/javascript" src="javascripts/Map.js"></script>
-	<script type="text/javascript" src="javascripts/Park.js"></script>
+	<!-- // <script type="text/javascript" src="javascripts/Park.js"></script> -->
 	<script type="text/javascript" src="javascripts/app.js"></script>
 </body>
 </html>
