@@ -29,42 +29,25 @@
 	// };
 
 
-	var vm = function() {
-		var self = this;
+	
 
-		self.parks = ko.observableArray();
 
-		self.addPark = function(name, location, image, rating, url, ratingImg) {
-			self.parks.push(new Park(name, location, image, rating, url, ratingImg));
-		};
 
-		self.loadParks = function() {
-
-		}
-
-		self.addResults = function(results) {
-			console.log(results.businesses[5]);
-			for(var i = 0; i < results.businesses.length; i++) {
-				var park = results.businesses[i],
-					parkName = park.name,
-					parkLocation = park.location,
-					parkImage = park.image_url,
-					parkRating = park.rating,
-					parkRatingImage = park.rating_img_url_small,
-					parkURL = park.url;
-				self.addPark(parkName, parkLocation, parkImage, parkRating, parkURL, parkRatingImage);
-			}
-		};
-
-		self.isOpen = ko.observable(true);
-		self.toggleOpen = function(){
-			self.isOpen(!self.isOpen());
-		};
-
-		return {
-			addResults: self.addResults
-		};
+	// *** Hamburger Button - open|close ***
+	// helper for event handler
+	var openCloseSidebar = function (self) {
+		$(self).toggleClass('open');
+		$('.content').toggleClass('is-open');
 	};
+
+	var $hamburgerButton = $('#content__hamburger-button');
+	// evant handler for hamburger button
+	// when the click ocure sidebar will open or close
+	$hamburgerButton.on('click', function (event) {
+		var self = this;
+		openCloseSidebar(self);
+	})
+	// END Hamburger Button - open|close
 
 	var init = function () {
 		// initMap();
@@ -72,7 +55,7 @@
 		MapHandler.init(LOCATION);
 		YelpHandler.searchRequest('Warsaw, Poland', 'parks', 'parks');
 		// init ViewModel
-		ko.applyBindings(vm);
+		ko.applyBindings(ViewModel);
 	};
 	// start the app
 	$(init);
