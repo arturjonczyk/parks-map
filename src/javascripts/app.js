@@ -1,34 +1,32 @@
 (function() {
-	// Warsaw, Poland
-	var LOCATION = {lat: 52.2187648, lng: 21.0354383};
 
-	var Park = function(name, location, image, rating, url, ratingImg) {
-		this.name = name;
-		this.location = {lat: location.coordinate.latitude, lng: location.coordinate.longitude};
-		this.image = image;
-		this.rating = rating;
-		this.ratingImg = ratingImg;
-		this.url = url;
-		this.init();
-	};
+	// var Park = function(name, location, image, rating, url, ratingImg) {
+	// 	this.name = name;
+	// 	this.location = {lat: location.coordinate.latitude, lng: location.coordinate.longitude};
+	// 	this.image = image;
+	// 	this.rating = rating;
+	// 	this.ratingImg = ratingImg;
+	// 	this.url = url;
+	// 	this.init();
+	// };
 
-	Park.prototype.addMarkerToMap = function() {
-		marker = new google.maps.Marker({
-			position: this.location,
-			map: map
-		});
-	};
+	// Park.prototype.addMarkerToMap = function() {
+	// 	marker = new google.maps.Marker({
+	// 		position: this.location,
+	// 		map: map
+	// 	});
+	// };
 
-	Park.prototype.addListenerToMarker = function() {
-		marker.addListener('click', function() {
-			infowindow.open(map, marker);
-		});
-	};
+	// Park.prototype.addListenerToMarker = function() {
+	// 	marker.addListener('click', function() {
+	// 		infowindow.open(map, marker);
+	// 	});
+	// };
 
-	Park.prototype.init = function() {
-		this.addMarkerToMap();
-		this.addListenerToMarker();
-	};
+	// Park.prototype.init = function() {
+	// 	this.addMarkerToMap();
+	// 	this.addListenerToMarker();
+	// };
 
 
 	var vm = function() {
@@ -39,6 +37,10 @@
 		self.addPark = function(name, location, image, rating, url, ratingImg) {
 			self.parks.push(new Park(name, location, image, rating, url, ratingImg));
 		};
+
+		self.loadParks = function() {
+
+		}
 
 		self.addResults = function(results) {
 			console.log(results.businesses[5]);
@@ -66,8 +68,9 @@
 
 	var init = function () {
 		// initMap();
-		Map.init(LOCATION);
-		Yelp.searchRequest('Warsaw, Poland', 'parks', 'parks');
+		var LOCATION = {lat: 52.2187648, lng: 21.0354383};
+		MapHandler.init(LOCATION);
+		YelpHandler.searchRequest('Warsaw, Poland', 'parks', 'parks');
 		// init ViewModel
 		ko.applyBindings(vm);
 	};

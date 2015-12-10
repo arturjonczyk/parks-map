@@ -1,4 +1,4 @@
-var Map = function() {
+var MapHandler = function() {
 
 	var mapOptions = {
 		center: '',
