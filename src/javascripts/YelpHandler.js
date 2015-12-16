@@ -29,22 +29,6 @@ var YelpHandler = function() {
 		location: ''
 	};
 
-	var settings = {
-		url: yelpBaseURL.search,
-		data: parameters,
-		// This is crucial to include as well to prevent jQuery from adding
-		// on a cache-buster parameter "_=23489489749837", invalidating our oauth-signature
-		cache: true,
-		dataType: 'jsonp',
-		success: function(results) {
-			addResults(results);
-
-		},
-		error: function() {
-			console.log('Not Working...');
-		}
-	};
-
 	function nonce_generate() {
 		return (Math.floor(Math.random() * 1e12).toString());
 	}
@@ -58,12 +42,25 @@ var YelpHandler = function() {
 		parameters.oauth_signature = encodedSignature;
 	};
 
-	function searchRequest(location, category, term) {
+	function getData(location, category, term, callback) {
 		init(location, category, term);
-		$.ajax(settings);
+		$.ajax({
+			url: yelpBaseURL.search,
+			data: parameters,
+			cache: true,
+			dataType: 'jsonp',
+			async: true,
+			success: function(data) {
+				callback(data);
+
+			},
+			error: function() {
+				console.log('Not Working...');
+			}
+		});
 	}
 
 	return {
-		searchRequest: searchRequest
+		getData: getData
 	};
 }();
