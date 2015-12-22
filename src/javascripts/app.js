@@ -16,14 +16,7 @@
 	// END Hamburger Button - open|close
 
 	var init = function () {
-		// initMap();
-		var LOCATION = {lat: 52.2187648, lng: 21.0354383};
-		MapHandler.init(LOCATION);
-		// YelpHandler.searchRequest('Warsaw, Poland', 'parks', 'parks');
-		// init ViewModel
-		ko.applyBindings(ParkViewModel);
+		ko.applyBindings(ParksApp);
 	};
-	// start the app
 	$(init);
 })();
-

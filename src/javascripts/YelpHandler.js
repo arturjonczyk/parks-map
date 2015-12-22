@@ -10,8 +10,8 @@ var YelpHandler = function() {
 	var privateKeys = {
 		YELP_KEY: 'CtLhQCQjIEPDX_lI1Hdb6A',
 		YELP_KEY_SECRET: 'Y_W4_bV_nD8mDbIzu7Hby97cCU8',
-		YELP_TOKEN: 'dMX4bX9dH57c_KhzGRIPgIvirOoMgVfe',
-		YELP_TOKEN_SECRET: 'ShPZvZAHUjrTYJN_cjFK0CH5UT0'
+		YELP_TOKEN: 'OOp7tdrxlv0Iw78yJSRRk_Dt_AdKrLC7',
+		YELP_TOKEN_SECRET: 'Ni5Dp9KkQRwD6bQpCRv_LJWV7jk'
 	};
 
 	var parameters = {
