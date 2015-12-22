@@ -12,11 +12,16 @@
 	<div class="container">
 		<div class="sidebar">
 			<div class="sidebar-header">
-				<h1>SIDEBAR</h1>
+				<input data-bind="value: query, valueUpdate: 'keyup'">
+				<p class="filter" data-bind="css: {showAll: query().length > 0}">
+					<span data-bind="visible: query().length == 0">Filter</span>
+					<span class="" data-bind="visible: query().length > 0, click: showAll">Show All</span>
+
+				</p>
 			</div>
 			<div class="sidebar-content">
 				<ul data-bind="foreach: parks">
-					<li>
+					<li data-bind="visible: isVisible, click: showMarker">
 						<h3 data-bind="text: name"></h3>
 						<img data-bind="attr: {src: ratingImg}">
 					</li>
@@ -33,7 +38,7 @@
 				</div>
 			</div>
 			<div class="content-header">
-				<h1>GREEN AREAS <span>Warsaw</span> </h1>
+				<h1>Parks <span>Warsaw</span> </h1>
 			</div>
 			<div id="map" class="map">
 			</div>
@@ -47,7 +52,7 @@
 	<script type="text/javascript" src="javascripts/lib/knockout-3.3.0.min.js"></script>
 	<script type="text/javascript" src="javascripts/Models.js"></script>
 	<script type="text/javascript" src="javascripts/YelpHandler.js"></script>
-	<script type="text/javascript" src="javascripts/MapHandler.js"></script>
+	<!-- <script type="text/javascript" src="javascripts/MapHandler.js"></script> -->
 	<script type="text/javascript" src="javascripts/ParkViewModel.js"></script>
 	<script type="text/javascript" src="javascripts/app.js"></script>
 </body>
