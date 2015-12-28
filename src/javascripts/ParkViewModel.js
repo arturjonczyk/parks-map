@@ -1,13 +1,18 @@
 var ParksApp = function() {
 	var self = this;
 	var marker;
-	var infowindow = new google.maps.InfoWindow({
-		maxWidth: 200
-		});
+	var infowindow = new google.maps.InfoWindow({});
 
 	self.parks = ko.observableArray(data.parks);
 
-	self.parks().forEach(function (park, index, myList) {
+	self.parks().forEach(function (park) {
+		var contentString = "<div class='infoWindow'>";
+			contentString += "<div class='infoWindow__image'>";
+		    contentString += "<img src=" + park.image + " alt=" + park.name() + " /></div>";
+			contentString += "<div class='infoWindow__content'>";
+			contentString += "<h2>" + park.name() + "</h2>";
+		    contentString += "<img src=" + park.ratingImg + " alt='' />";
+			contentString += "<a href=" + park.url + ">More info...</a></div></div>";
 		marker = new google.maps.Marker({
 			position: new google.maps.LatLng(park.lat, park.lng),
 			map: map,
@@ -15,11 +20,12 @@ var ParksApp = function() {
 		});
 		park.marker = marker;
 		park.isVisible = ko.observable(true);
+		park.contentString(contentString);
 
 		google.maps.event.addListener(park.marker, 'click', function() {
 			infowindow.open(map, this);
 			toggleBounce(park);
-			infowindow.setContent(park.contentString);
+			infowindow.setContent(park.contentString());
 			});
 	});
 
@@ -46,7 +52,7 @@ var ParksApp = function() {
 
 	self.showMarker = function() {
 		toggleBounce(this);
-		infowindow.setContent(this.contentString);
+		infowindow.setContent(this.contentString());
 		infowindow.open(map, this.marker);
 	};
 

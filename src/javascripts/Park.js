@@ -8,7 +8,7 @@ var Park = function(map, name, lat, lng, image, ratingImg, url) {
 	self.image = image;
 	self.ratingImg = ratingImg;
 	self.url = url;
-	self.contentString = '<h2>Hello from ' + self.name() + '</h2>';
+	self.contentString = ko.observable('');
 
 
 	// self.map = map;
