@@ -16,6 +16,8 @@
 	// END Hamburger Button - open|close
 
 	var init = function () {
+		/*var location = {lat: 52.2187648, lng: 21.0354383};*/
+		/*MapHandler.init(location);*/
 		ko.applyBindings(ParksApp);
 	};
 	$(init);

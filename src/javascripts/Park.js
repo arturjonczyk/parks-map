@@ -1,6 +1,13 @@
-var Park = function(name, lat, lng, image, ratingImg, url) {
+var Park = function(map, name, lat, lng, image, ratingImg, url) {
+	"use strict";
 	var self = this;
 
+	self.map = map;
+	self.marker = new google.maps.Marker({
+	    position: {lat: lat, lng: lng},
+	    map: map,
+	    title: 'Hello World!'
+	  });
 	self.name = ko.observable(name);
 	self.lat = lat;
 	self.lng = lng;
@@ -8,28 +15,9 @@ var Park = function(name, lat, lng, image, ratingImg, url) {
 	self.ratingImg = ratingImg;
 	self.url = url;
 	self.contentString = '<h2>Hello from ' + self.name() + '</h2>';
-
-	/*self.marker = new google.maps.Marker({
-		position: new google.maps.LatLng(lat, lng),
-		map: map,
-		animation: google.maps.Animation.DROP
-	});*/
-
-
-	/*self.infowindow = new google.maps.InfoWindow({
-		content: self.contentString
-		})
-
-
-	function toggleBounce() {
-		self.marker.setAnimation(google.maps.Animation.BOUNCE);
-		setTimeout(function(){ self.marker.setAnimation(null); }, 1450);
-	}
-
-	self.marker.addListener('click', function() {
-		toggleBounce();
-		self.infowindow.open(map, self.marker);
-	});
+	self.infowindow = new google.maps.InfoWindow({
+    	content: self.contentString
+  	});
 
 	self.isVisible = ko.observable(false);
 
@@ -40,10 +28,17 @@ var Park = function(name, lat, lng, image, ratingImg, url) {
 			self.marker.setMap(null);
 		}
 	});
-	self.isVisible(true);*/
+	self.isVisible(true);
+
+	self.test = function() {
+		self.marker.addListener('click', function() {
+    		self.infowindow.open(self.map, self.marker);
+  		});
+	};
+	self.test();
 };
 
-// Park.prototype.addMarkerToMap = function() {
+// / Park.prototype.addMarkerToMap = function() {
 // 	marker = new google.maps.Marker({
 // 		position: this.location,
 // 		map: map
