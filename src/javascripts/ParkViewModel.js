@@ -14,6 +14,7 @@ var ParksApp = function() {
 			animation: google.maps.Animation.DROP
 		});
 		park.marker = marker;
+		park.isVisible = ko.observable(true);
 
 		google.maps.event.addListener(park.marker, 'click', function() {
 			infowindow.open(map, this);
@@ -32,7 +33,7 @@ var ParksApp = function() {
 		return ko.utils.arrayFilter(self.parks(), function (park) {
 			var doesMatch = park.name().toLowerCase().indexOf(search) >= 0;
 
-			// park.isVisible(doesMatch);
+			park.isVisible(doesMatch);
 
 			return doesMatch;
 		});
