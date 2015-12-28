@@ -1,6 +1,30 @@
 var ParksApp = function() {
 	var self = this;
+	var marker;
+	var infowindow = new google.maps.InfoWindow({
+		maxWidth: 200
+		});
+
 	self.parks = ko.observableArray(data.parks);
+
+	self.parks().forEach(function (park, index, myList) {
+		marker = new google.maps.Marker({
+			position: new google.maps.LatLng(park.lat, park.lng),
+			map: map,
+			animation: google.maps.Animation.DROP
+		});
+		park.marker = marker;
+		park.isVisible = ko.observable(true);
+
+		google.maps.event.addListener(park.marker, 'click', function() {
+			infowindow.open(map, this);
+			toggleBounce(park);
+			infowindow.setContent(park.contentString);
+			});
+	});
+
+
+
 	self.query = ko.observable('');
 
 	self.filterParks = ko.computed(function () {
@@ -15,18 +39,15 @@ var ParksApp = function() {
 		});
 	});
 
-	function toggleBounce(self) {
-		self.marker.setAnimation(google.maps.Animation.BOUNCE);
-		setTimeout(function(){ self.marker.setAnimation(null); }, 1450);
+	function toggleBounce(element) {
+		element.marker.setAnimation(google.maps.Animation.BOUNCE);
+		setTimeout(function(){ element.marker.setAnimation(null); }, 1450);
 	}
 
-
-
 	self.showMarker = function() {
-		var self = this;
-		console.log(self);
-		toggleBounce(self);
-		self.infowindow.open(map, self.marker);
+		toggleBounce(this);
+		infowindow.setContent(this.contentString);
+		infowindow.open(map, this.marker);
 	};
 
 	self.showAll = function() {
