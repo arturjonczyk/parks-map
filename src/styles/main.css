@@ -200,11 +200,17 @@ h1, h2, h3, h4, div, ul, li {
   left: 5px;
 }
 
+div .gm-style .gm-style-iw {
+  display: flex;
+  flex-direction: row;
+  max-width: 280px;
+}
+
 .infoWindow {
   display: flex;
   margin: 5px 5px 0 0;
   flex-direction: row;
-  /*min-width: 100%;*/
+  min-width: 140px;
 }
 
 .infoWindow__image img {
@@ -213,11 +219,9 @@ h1, h2, h3, h4, div, ul, li {
 
 .infoWindow__content {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
-  margin-left: 5px;
-  height: 100px;
-  /*width: 100%;*/
+  padding-left: 10px;
+  max-height: 100px;
 }
 .infoWindow__content img {
   align-self: flex-start;
@@ -230,11 +234,8 @@ h1, h2, h3, h4, div, ul, li {
 
 @media (max-width: 340px) {
   .infoWindow {
-    display: flex;
     flex-direction: column;
     width: 120px;
-
-    align-content: center;
   }
   .infoWindow__image {
     text-align: center;
@@ -242,6 +243,10 @@ h1, h2, h3, h4, div, ul, li {
     margin-top: 10px;
 
   }
+  .infoWindow__content {
+    min-height: 120px;
+  }
+
   .infoWindow__content h2 {
     font-size: 1.2em;
     margin-top: 10px;

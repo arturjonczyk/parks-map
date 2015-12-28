@@ -1,7 +1,9 @@
 var ParksApp = function() {
 	var self = this;
 	var marker;
-	var infowindow = new google.maps.InfoWindow({});
+	var infowindow = new google.maps.InfoWindow({
+		maxWidth: 400
+		});
 
 	self.parks = ko.observableArray(data.parks);
 
