@@ -1,4 +1,4 @@
-var Park = function(map, name, lat, lng, image, ratingImg, url) {
+var Park = function(name, lat, lng, image, ratingImg, url) {
 	"use strict";
 	var self = this;
 

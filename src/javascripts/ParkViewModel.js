@@ -1,9 +1,7 @@
 var ParksApp = function() {
 	var self = this;
 	var marker;
-	var infowindow = new google.maps.InfoWindow({
-		maxWidth: 400
-		});
+	var infowindow = new google.maps.InfoWindow({});
 
 	self.parks = ko.observableArray(data.parks);
 
@@ -67,7 +65,6 @@ var ParksApp = function() {
 		for(var i = 0 ; i < results.businesses.length; i++) {
 			var park = results.businesses[i];
 			self.parks.push(new Park(
-				map,
 				park.name,
 				park.location.coordinate.latitude,
 				park.location.coordinate.longitude,
