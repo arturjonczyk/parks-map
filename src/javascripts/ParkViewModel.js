@@ -1,35 +1,59 @@
+var removeExemplaryData = function() {
+	data.parks = [];
+	for(var i = 0; i < data.markers.length; i++) {
+		data.markers[i].setMap(null);
+	}
+};
+
+var addAllParks = function(results) {
+	removeExemplaryData();
+	for(var i = 0; i < results.businesses.length; i++) {
+		var park = results.businesses[i];
+		self.parks.push(new Park(
+			park.name,
+			park.location.coordinate.latitude,
+			park.location.coordinate.longitude,
+			park.image_url,
+			park.rating_img_url,
+			park.url
+		));
+	}
+};
+
+YelpHandler.getData('Warsaw, Poland', 'parks', 'parks', addAllParks);
+
 var ParksApp = function() {
 	var self = this;
-	var marker;
+	self.parks = ko.observableArray(data.parks);
 	var infowindow = new google.maps.InfoWindow({});
 
-	self.parks = ko.observableArray(data.parks);
-
 	self.parks().forEach(function (park) {
-		var contentString = "<div class='infoWindow'>";
-			contentString += "<div class='infoWindow__image'>";
-		    contentString += "<img src=" + park.image + " alt=" + park.name() + " /></div>";
-			contentString += "<div class='infoWindow__content'>";
-			contentString += "<h2>" + park.name() + "</h2>";
-		    contentString += "<img src=" + park.ratingImg + " alt='' />";
-			contentString += "<a href=" + park.url + ">More info...</a></div></div>";
-		marker = new google.maps.Marker({
-			position: new google.maps.LatLng(park.lat, park.lng),
-			map: map,
-			animation: google.maps.Animation.DROP
-		});
-		park.marker = marker;
-		park.isVisible = ko.observable(true);
-		park.contentString(contentString);
-
-		google.maps.event.addListener(park.marker, 'click', function() {
-			infowindow.open(map, this);
-			toggleBounce(park);
-			infowindow.setContent(park.contentString());
+		if (park.marker === '') {
+			var contentString = "<div class='infoWindow'>";
+				contentString += "<div class='infoWindow__image'>";
+			    contentString += "<img src=" + park.image + " alt=" + park.name() + " /></div>";
+				contentString += "<div class='infoWindow__content'>";
+				contentString += "<h2>" + park.name() + "</h2>";
+			    contentString += "<img src=" + park.ratingImg + " alt='' />";
+				contentString += "<a href=" + park.url + ">More info...</a></div></div>";
+			marker = new google.maps.Marker({
+				position: new google.maps.LatLng(park.lat, park.lng),
+				map: map,
+				animation: google.maps.Animation.DROP
 			});
+			park.marker = marker;
+			data.markers.push(marker);
+			park.isVisible = ko.observable(true);
+			park.contentString(contentString);
+
+			google.maps.event.addListener(park.marker, 'click', function() {
+				infowindow.open(map, this);
+				toggleBounce(park);
+				infowindow.setContent(park.contentString());
+				});
+		}
+
 	});
-
-
 
 	self.query = ko.observable('');
 
@@ -60,19 +84,3 @@ var ParksApp = function() {
 		self.query('');
 	};
 };
-
-	/*self.addAllParks = function(results) {
-		for(var i = 0 ; i < results.businesses.length; i++) {
-			var park = results.businesses[i];
-			self.parks.push(new Park(
-				park.name,
-				park.location.coordinate.latitude,
-				park.location.coordinate.longitude,
-				park.image_url,
-				park.rating_img_url,
-				park.url
-			));
-		}
-	};*/
-
-	/*YelpHandler.getData('Warsaw, Poland', 'parks', 'parks', self.addAllParks);*/

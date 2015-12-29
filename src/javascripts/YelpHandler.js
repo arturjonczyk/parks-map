@@ -52,7 +52,6 @@ var YelpHandler = function() {
 			async: true,
 			success: function(data) {
 				callback(data);
-
 			},
 			error: function() {
 				console.log('Not Working...');
