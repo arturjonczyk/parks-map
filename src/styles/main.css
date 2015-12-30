@@ -1,12 +1,19 @@
-/*
+/*************START****************
+* ALL COLORS I USED ON THIS SITE *
+**************START***************/
+/*  #f3f3f3 */
+/*  #9b59b6 */
+/*  #1abc9c */
+/*  #f1c40f */
 
-COLORS:
-#f3f3f3
-#9b59b6
-#1abc9c
-#f1c40f
- */
+/*************END****************
+* ALL COLORS I USED ON THIS SITE *
+**************END***************/
 
+/*************START****************
+* GENERAL STYLES *
+**************START***************/
+ *  */
 h1, h2, h3, h4, div, ul, li {
   margin: 0;
   padding: 0;
@@ -23,14 +30,25 @@ h1, h2, h3, h4, div, ul, li {
 *, *:before, *:after {
   box-sizing: inherit;
 }
+/*************END****************
+* GENERAL STYLES *
+**************END***************/
 
-/* CONTAINER*/
+/*************START****************
+* CONTAINER OF THE WHOLE PAGE *
+**************START***************/
 .container {
   display: flex;
   min-height: 100vh;
   overflow-x: hidden;
 }
+/*************END****************
+* CONTAINER OF THE WHOLE PAGE *
+**************END***************/
 
+/*************START****************
+* HEADERS OF SIDEBAR(PARKS LIST) AND CONTENT(MAP) *
+**************START***************/
 .content-header,
 .sidebar-header {
   display: flex;
@@ -55,8 +73,13 @@ h1, h2, h3, h4, div, ul, li {
 .content-header h1 span {
   font-size: 0.5em;
 }
+/*************END****************
+* HEADERS OF SIDEBAR(PARKS LIST) AND CONTENT(MAP) *
+**************END***************/
 
-/* SIDEBAR */
+/*************START****************
+* SIDEBAR (PARKS LIST) *
+**************START***************/
 .sidebar {
   position: absolute;
   width: 260px;
@@ -115,8 +138,15 @@ h1, h2, h3, h4, div, ul, li {
   background: #F4F2EC;
   border-bottom: 1px solid #E0DDD6;
 }
+/*************END****************
+* SIDEBAR (PARKS LIST) *
+**************END***************/
 
-/* CONTENT */
+/*************START****************
+* CONTENT (MAP) *
+**************START***************/
+
+/* GENERAL STYLING OF THE .CONTENT */
 .content {
   flex: 1;
   width: 100vw;
@@ -125,16 +155,22 @@ h1, h2, h3, h4, div, ul, li {
   transform: translate3d(0,0,0);
   transition: transform .4s;
 }
+/* END GENERAL STYLING OF THE .CONTENT */
 
+/* MAP */
 .content .map {
   margin-left: 50px;
   min-height: calc(100% - 78px);
 }
+/* END MAP */
 
+/* WHEN THE SIDEBAR IS OPEN*/
 .content.is-open {
   transform: translate3d(260px, 0, 0);
 }
+/* END WHEN THE SIDEBAR IS OPEN*/
 
+/* HAMBURGER BUTTON PANEL*/
 .content__hamburger-area {
   position: absolute;
   top: 0;
@@ -143,12 +179,12 @@ h1, h2, h3, h4, div, ul, li {
   min-height: 100vh;
   background: #f3f3f3;
 }
+/* END HAMBURGER BUTTON PANEL*/
 
-/************ HAMBURGER BUTTON ***********/
+/* HAMBURGER BUTTON */
 #content__hamburger-button {
   width: 32px;
   height: 22px;
-  /*position: relative;*/
   margin: 28px auto;
   transform: rotate(0deg);
   transition: .5s ease-in-out;
@@ -199,13 +235,9 @@ h1, h2, h3, h4, div, ul, li {
   top: 20px;
   left: 5px;
 }
+/* END HAMBURGER BUTTON */
 
-div .gm-style .gm-style-iw {
-  display: flex;
-  flex-direction: row;
-  max-width: 280px;
-}
-
+/* INFO WINDOW OF THE MARKER (MAP) */
 .infoWindow {
   display: flex;
   margin: 5px 5px 0 0;
@@ -252,3 +284,8 @@ div .gm-style .gm-style-iw {
     margin-top: 10px;
   }
 }
+/* END INFO WINDOW OF THE MARKER (MAP) */
+
+/*************END****************
+* CONTENT (MAP) *
+**************END***************/
