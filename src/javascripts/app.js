@@ -15,7 +15,7 @@
 		openCloseSidebar(self);
 	});
 	// END Hamburger Button - open|close
-	
+
 	var removeExemplaryData = function() {
 		data.parks = [];
 		for(var i = 0; i < data.markers.length; i++) {
@@ -77,10 +77,10 @@
 
 		self.filterParks = ko.computed(function () {
 			var search  = self.query().toLowerCase();
-
 			return ko.utils.arrayFilter(self.parks(), function (park) {
 				var doesMatch = park.name().toLowerCase().indexOf(search) >= 0;
 
+				park.marker.setVisible(doesMatch);
 				park.isVisible(doesMatch);
 
 				return doesMatch;
