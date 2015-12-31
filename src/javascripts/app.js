@@ -1,8 +1,11 @@
 
 (function() {
-	// *** Hamburger Button - open|close ***
-	// helper for event handler
+	/**
+	 * This method will fired when the hamburger button is cliked
+	 * @param  {DOM element} self [Div element (id = content_hamburger-button)]
+	 */
 	var openCloseSidebar = function (self) {
+		console.log(self);
 		$(self).toggleClass('open');
 		$('.content').toggleClass('is-open');
 	};

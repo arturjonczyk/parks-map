@@ -13,7 +13,6 @@ function init() {
 		maxZoom: 16,
 		scrollwheel: false
 	};
-
 	var mapId = document.getElementById('map');
 	map = new google.maps.Map(mapId, mapOptions);
 }
