@@ -123,6 +123,7 @@ h1, h2, h3, h4, div, ul, li {
 
 .sidebar-content ul {
   padding: 0;
+  margin: 0;
 }
 
 .sidebar-content li {
