@@ -1,9 +1,11 @@
 // define the global map variable.
-var map;
+
 /**
  * Function that initialize the map of the app.
  */
-function init() {
+
+var map;
+function initMap() {
 	'use strict';
 	var location = {lat: 52.2187648, lng: 21.0354383};
 	var mapOptions = {
@@ -13,7 +15,9 @@ function init() {
 		maxZoom: 16,
 		scrollwheel: false
 	};
-	var mapId = document.getElementById('map');
-	map = new google.maps.Map(mapId, mapOptions);
+	var init = function	() {
+		var mapId = document.getElementById('map');
+		map = new google.maps.Map(mapId, mapOptions);
+	};
+	init();
 }
-init();

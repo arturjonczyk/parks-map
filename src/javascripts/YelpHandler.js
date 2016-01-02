@@ -42,7 +42,7 @@ var YelpHandler = function() {
 		parameters.oauth_signature = encodedSignature;
 	};
 
-	function getData(location, category, term, callback) {
+	function getData(location, category, term, successBack, errorBack) {
 		init(location, category, term);
 		$.ajax({
 			url: yelpBaseURL.search,
@@ -51,10 +51,10 @@ var YelpHandler = function() {
 			dataType: 'jsonp',
 			async: true,
 			success: function(data) {
-				callback(data);
+				successBack(data);
 			},
-			error: function() {
-				console.log('Not Working...');
+			error: function(e) {
+				errorBack(e);
 			}
 		});
 	}

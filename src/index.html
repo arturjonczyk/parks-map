@@ -46,7 +46,24 @@
 	</div>
 
 	<!-- JS Scripts -->
-	<script src="https://maps.googleapis.com/maps/api/js?v-3&key=AIzaSyB33zqyMRF0GTVQh1Aewr6ycjnHIuWg05A"></script>
+   	<script>
+		// this one is working.
+   		function displayMapErrorMsg() {
+   			console.log('The google Map is not loading properlly, sorry. Try later.');
+			testFun();
+   		}
+
+		function appStart() {
+		    if (typeof google === 'undefined' || google === null) {
+		        console.log('Error, google is not here...');
+		    } else {
+		        initMap();
+		        startApp();
+
+		    }
+		}
+   </script>
+	<script async src="https://maps.googleapis.com/maps/api/js?callback=appStart" onerror=displayMapErrorMsg()></script>
 	<script type="text/javascript" src="javascripts/lib/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="javascripts/lib/oauth-signature.min.js"></script>
 	<script type="text/javascript" src="javascripts/lib/knockout-3.3.0.min.js"></script>

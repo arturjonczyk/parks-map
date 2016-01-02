@@ -1,11 +1,10 @@
 
-(function() {
+var startApp = function() {
 	/**
 	 * This method will fired when the hamburger button is cliked
 	 * @param  {DOM element} self [Div element (id = content_hamburger-button)]
 	 */
 	var openCloseSidebar = function (self) {
-		console.log(self);
 		$(self).toggleClass('open');
 		$('.content').toggleClass('is-open');
 	};
@@ -41,7 +40,12 @@
 		}
 	};
 
-	YelpHandler.getData('Warsaw, Poland', 'parks', 'parks', addAllParks);
+	var errorYelp = function(e) {
+		console.log('Error from yelp, sorry about that....');
+		console.log('Type of error: ', e);
+	};
+
+	YelpHandler.getData('Warsaw, Poland', 'parks', 'parks', addAllParks, errorYelp);
 
 	var ParksApp = function() {
 		var self = this;
@@ -110,4 +114,4 @@
 		ko.applyBindings(ParksApp);
 	};
 	$(init);
-})();
+};
