@@ -166,7 +166,7 @@ h1, h2, h3, h4, div, ul, li {
 /* END MAP */
 
 /* WHEN THE SIDEBAR IS OPEN*/
-.content.is-open {
+.content.open {
   transform: translate3d(260px, 0, 0);
 }
 /* END WHEN THE SIDEBAR IS OPEN*/

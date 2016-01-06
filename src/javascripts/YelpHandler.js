@@ -1,5 +1,5 @@
-var YelpHandler = function() {
-
+var yelp = function() {
+	'use strict';
 	// Yelp Base URL
 	var yelpBaseURL = {
 		'search': 'https://api.yelp.com/v2/search/',
@@ -17,7 +17,7 @@ var YelpHandler = function() {
 	var parameters = {
 		oauth_consumer_key: privateKeys.YELP_KEY,
 		oauth_token: privateKeys.YELP_TOKEN,
-		oauth_nonce: nonce_generate(),
+		oauth_nonce: null,
 		oauth_timestamp: Math.floor(Date.now() / 1000),
 		oauth_signature_method: 'HMAC-SHA1',
 		oauth_version: '1.0',
@@ -29,20 +29,21 @@ var YelpHandler = function() {
 		location: ''
 	};
 
-	function nonce_generate() {
+	var nonce_generate = function() {
 		return (Math.floor(Math.random() * 1e12).toString());
-	}
+	};
 
 	var init = function(location, category, term) {
 		parameters.location = location;
 		parameters.category = category;
 		parameters.term = term;
+		parameters.oauth_nonce = nonce_generate();
 
 		var encodedSignature = oauthSignature.generate('GET', yelpBaseURL.search, parameters, privateKeys.YELP_KEY_SECRET, privateKeys.YELP_TOKEN_SECRET);
 		parameters.oauth_signature = encodedSignature;
 	};
 
-	function getData(location, category, term, successBack, errorBack) {
+	var dataRequest = function(location, category, term, successBack, errorBack) {
 		init(location, category, term);
 		$.ajax({
 			url: yelpBaseURL.search,
@@ -57,9 +58,9 @@ var YelpHandler = function() {
 				errorBack(e);
 			}
 		});
-	}
+	};
 
 	return {
-		getData: getData
+		dataRequest: dataRequest
 	};
 }();

@@ -1,22 +1,28 @@
+var app = (function () {
+	'use strict';
+	var SEARCHCITY = 'Warsaw',
+		SEARCHCOUNTRY = 'Poland',
+		SEARCHTERM = 'Parks',
+		SEARCHCATEGORY = 'Parks',
+		SEARCHLOCATION = {lat: 52.2187648, lng: 21.0354383};
 
-var startApp = function() {
-	/**
-	 * This method will fired when the hamburger button is cliked
-	 * @param  {DOM element} self [Div element (id = content_hamburger-button)]
-	 */
-	var openCloseSidebar = function (self) {
-		$(self).toggleClass('open');
-		$('.content').toggleClass('is-open');
+	var mapOptions = {
+			center: SEARCHLOCATION,
+			zoom: 11,
+			minZoom: 4,
+			maxZoom: 16,
+			scrollwheel: false
+		};
+
+	var mapElem = document.getElementById('map');
+
+	var mapLoadError = function() {
+		console.log('The google Map is not loading properlly, sorry. Try later.');
 	};
 
-	var $hamburgerButton = $('#content__hamburger-button');
-	// evant handler for hamburger button
-	// when the click ocure sidebar will open or close
-	$hamburgerButton.on('click', function (event) {
-		var self = this;
-		openCloseSidebar(self);
-	});
-	// END Hamburger Button - open|close
+	var yelpRequestError = function () {
+		console.log('Yelp Reqeust Error!!!');
+	};
 
 	var removeExemplaryData = function() {
 		data.parks = [];
@@ -24,8 +30,7 @@ var startApp = function() {
 			data.markers[i].setMap(null);
 		}
 	};
-
-	var addAllParks = function(results) {
+	var addData = function(results) {
 		removeExemplaryData();
 		for(var i = 0; i < results.businesses.length; i++) {
 			var park = results.businesses[i];
@@ -40,78 +45,14 @@ var startApp = function() {
 		}
 	};
 
-	var errorYelp = function(e) {
-		console.log('Error from yelp, sorry about that....');
-		console.log('Type of error: ', e);
-	};
-
-	YelpHandler.getData('Warsaw, Poland', 'parks', 'parks', addAllParks, errorYelp);
-
-	var ParksApp = function() {
-		var self = this;
-		self.parks = ko.observableArray(data.parks);
-		var infowindow = new google.maps.InfoWindow({});
-
-		self.parks().forEach(function (park) {
-			if (park.marker === '') {
-				var contentString = "<div class='infoWindow'>";
-					contentString += "<div class='infoWindow__image'>";
-				    contentString += "<img src=" + park.image + " alt=" + park.name() + " /></div>";
-					contentString += "<div class='infoWindow__content'>";
-					contentString += "<h2>" + park.name() + "</h2>";
-				    contentString += "<img src=" + park.ratingImg + " alt='' />";
-					contentString += "<a href=" + park.url + ">More info...</a></div></div>";
-				marker = new google.maps.Marker({
-					position: new google.maps.LatLng(park.lat, park.lng),
-					map: map,
-					animation: google.maps.Animation.DROP
-				});
-				park.marker = marker;
-				data.markers.push(marker);
-				park.isVisible = ko.observable(true);
-				park.contentString(contentString);
-
-				google.maps.event.addListener(park.marker, 'click', function() {
-					infowindow.open(map, this);
-					toggleBounce(park);
-					infowindow.setContent(park.contentString());
-					});
-			}
-
-		});
-
-		self.query = ko.observable('');
-
-		self.filterParks = ko.computed(function () {
-			var search  = self.query().toLowerCase();
-			return ko.utils.arrayFilter(self.parks(), function (park) {
-				var doesMatch = park.name().toLowerCase().indexOf(search) >= 0;
-
-				park.marker.setVisible(doesMatch);
-				park.isVisible(doesMatch);
-
-				return doesMatch;
-			});
-		});
-
-		function toggleBounce(element) {
-			element.marker.setAnimation(google.maps.Animation.BOUNCE);
-			setTimeout(function(){ element.marker.setAnimation(null); }, 1450);
-		}
-
-		self.showMarker = function() {
-			toggleBounce(this);
-			infowindow.setContent(this.contentString());
-			infowindow.open(map, this.marker);
-		};
-
-		self.showAll = function() {
-			self.query('');
-		};
-	};
-
 	var init = function () {
-		ko.applyBindings(ParksApp);
+		mapLocation.init(mapOptions, mapElem);
+		yelp.dataRequest(SEARCHCITY + ', ' + SEARCHCOUNTRY, SEARCHCATEGORY, SEARCHTERM, addData, yelpRequestError);
+		ko.applyBindings(appViewModel);
 	};
-	$(init);
-};
+
+	return {
+		init: init,
+		mapLoadError: mapLoadError
+	};
+})();

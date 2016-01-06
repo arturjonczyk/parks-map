@@ -29,9 +29,9 @@
 			</div>
 
 		</div>
-		<div class="content">
+		<div class="content" data-bind="css: {'open': isOpenLocationsList}">
 			<div class="content__hamburger-area">
-				<div id="content__hamburger-button">
+				<div id="content__hamburger-button" data-bind="click: toggleLocationsList, css: hamStyle">
   					<span></span>
   					<span></span>
   					<span></span>
@@ -46,33 +46,16 @@
 	</div>
 
 	<!-- JS Scripts -->
-
-
 	<script type="text/javascript" src="javascripts/lib/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="javascripts/lib/oauth-signature.min.js"></script>
 	<script type="text/javascript" src="javascripts/lib/knockout-3.3.0.min.js"></script>
-	<script type="text/javascript" src="javascripts/YelpHandler.js"></script>
-	<script type="text/javascript" src="javascripts/Map.js"></script>
-	<script type="text/javascript" src="javascripts/Park.js"></script>
-	<script type="text/javascript" src="javascripts/Data.js"></script>
+	<script type="text/javascript" src="javascripts/yelpHandler.js"></script>
+	<script type="text/javascript" src="javascripts/mapHandler.js"></script>
+	<script type="text/javascript" src="javascripts/parkConstructor.js"></script>
+	<script type="text/javascript" src="javascripts/data.js"></script>
+	<script type="text/javascript" src="javascripts/appViewModel.js"></script>
 	<script type="text/javascript" src="javascripts/app.js"></script>
-	<script>
-		// this one is working.
-   		function displayMapErrorMsg() {
-   			console.log('The google Map is not loading properlly, sorry. Try later.');
-			testFun();
-   		}
+   	<script src="https://maps.googleapis.com/maps/api/js?callback=app.init" onerror=app.mapLoadError()></script>
 
-		function appStart() {
-		    if (typeof google === 'undefined' || google === null) {
-		        console.log('Error, google is not here...');
-		    } else {
-		        initMap();
-		        startApp();
-
-		    }
-		}
-   </script>
-   <script src="https://maps.googleapis.com/maps/api/js?callback=appStart" onerror=displayMapErrorMsg()></script>
 </body>
 </html>
