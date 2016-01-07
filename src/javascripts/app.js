@@ -16,12 +16,27 @@ var app = (function () {
 
 	var mapElem = document.getElementById('map');
 
+	var overlayElement = document.getElementById('overlay');
+	var messageElement = overlayElement.querySelector('h1');
+	var messageButtong = overlayElement.querySelector('span');
+
+	var displayErrorMessage = function(message) {
+		messageElement.innerHTML = message;
+		overlayElement.style.transform = 'translate(0px, 0px)';
+	};
+	messageButtong.addEventListener('click', function() {
+		overlayElement.style.transform = 'translate(0px, -1000px)';
+		messageElement.innerHTML = 'No message';
+	}, false);
+
 	var mapLoadError = function() {
-		console.log('The google Map is not loading properlly, sorry. Try later.');
+		var errorMessage = 'The google Map is not loading properlly, sorry. Try later.';
+		displayErrorMessage(errorMessage);
 	};
 
 	var yelpRequestError = function () {
-		console.log('Yelp Reqeust Error!!!');
+		var errorMessage = 'Yelp Reqeust Error!!!';
+		displayErrorMessage(errorMessage);
 	};
 
 	var removeExemplaryData = function() {
