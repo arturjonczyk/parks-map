@@ -6,11 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Warsaw Parks</title>
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-	<!-- build:css -->
-	<link rel="stylesheet" href="styles/lib/normalize.css">
-	<link rel="stylesheet" href="styles/main.css">
-	<link rel="stylesheet" href="styles/overlay.css">
-	<!-- endbuild -->
+	<link href="css/styles.min.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
@@ -56,17 +52,7 @@
 		</div>
 	</div>
 
-	<!-- build:js -->
-	<script type="text/javascript" src="javascripts/lib/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript" src="javascripts/lib/oauth-signature.min.js"></script>
-	<script type="text/javascript" src="javascripts/lib/knockout-3.3.0.min.js"></script>
-	<script type="text/javascript" src="javascripts/yelpHandler.js"></script>
-	<script type="text/javascript" src="javascripts/mapHandler.js"></script>
-	<script type="text/javascript" src="javascripts/parkConstructor.js"></script>
-	<script type="text/javascript" src="javascripts/data.js"></script>
-	<script type="text/javascript" src="javascripts/appViewModel.js"></script>
-	<script type="text/javascript" src="javascripts/app.js"></script>
-	<!-- endbuild -->
+	<script src="js/all.min.js"></script>
    	<script src="https://maps.googleapis.com/maps/api/js?callback=app.init" onerror=app.mapLoadError()></script>
 
 </body>
