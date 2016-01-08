@@ -1,0 +1,302 @@
+/*************START****************
+* ALL COLORS I USED ON THIS SITE *
+**************START***************/
+
+
+/*  #f3f3f3 */
+
+
+/*  #9b59b6 */
+
+
+/*  #1abc9c */
+
+
+/*  #f1c40f */
+
+
+/*************END****************
+* ALL COLORS I USED ON THIS SITE *
+**************END***************/
+
+
+/*************START****************
+* GENERAL STYLES *
+**************START***************/
+
+h1, h2, h3, h4, div, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Box-sizing border-box */
+
+* {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/*************END****************
+* GENERAL STYLES *
+**************END***************/
+
+
+/*************START****************
+* CONTAINER OF THE WHOLE PAGE *
+**************START***************/
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/*************END****************
+* CONTAINER OF THE WHOLE PAGE *
+**************END***************/
+
+
+/*************START****************
+* HEADERS OF SIDEBAR(PARKS LIST) AND CONTENT(MAP) *
+**************START***************/
+
+.content-header, .sidebar-header {
+    display: flex;
+    background-color: #272B33;
+    margin-left: 50px;
+    height: 78px;
+    justify-content: center;
+    align-items: center;
+}
+.sidebar-header {
+    margin-left: 0px;
+}
+.content-header h1, .sidebar-header h1 {
+    text-align: center;
+    color: #f9f9f9;
+    margin: 0;
+}
+.content-header h1 span {
+    font-size: 0.5em;
+}
+
+/*************END****************
+* HEADERS OF SIDEBAR(PARKS LIST) AND CONTENT(MAP) *
+**************END***************/
+
+
+/*************START****************
+* SIDEBAR (PARKS LIST) *
+**************START***************/
+
+.sidebar {
+    position: absolute;
+    width: 260px;
+    height: 100vh;
+    background: #FEFEFD;
+}
+.sidebar-content {
+    height: calc(100% - 78px);
+    overflow-y: scroll;
+    background: #FBFBFB;
+}
+.sidebar-header input {
+    height: 26px;
+    width: 130px;
+}
+.sidebar-header .filter {
+    display: inline-block;
+    color: #FBFBFB;
+    background: #1abc9c;
+    padding: 7px 10px;
+    width: 80px;
+    text-align: center;
+}
+.sidebar-header .showAll {
+    cursor: pointer;
+}
+.sidebar-header .showAll:active {
+    background: #15A88B;
+}
+.sidebar-content h3 {
+    color: #505050;
+    font-size: 16px;
+    margin: 0;
+}
+.sidebar-content ul {
+    padding: 0;
+    margin: 0;
+}
+.sidebar-content li {
+    list-style: none;
+    border-bottom: 1px solid #D3D0C9;
+    padding: 16px 0 10px 16px;
+}
+.sidebar-content li:hover {
+    background: #F9F7F1;
+}
+.sidebar-content li:active {
+    background: #F4F2EC;
+    border-bottom: 1px solid #E0DDD6;
+}
+
+/*************END****************
+* SIDEBAR (PARKS LIST) *
+**************END***************/
+
+
+/*************START****************
+* CONTENT (MAP) *
+**************START***************/
+
+
+/* GENERAL STYLING OF THE .CONTENT */
+
+.content {
+    flex: 1;
+    width: 100vw;
+    height: 100vh;
+    background: #fff;
+    transform: translate3d(0, 0, 0);
+    transition: transform .4s;
+}
+
+/* END GENERAL STYLING OF THE .CONTENT */
+
+
+/* MAP */
+
+.content .map {
+    margin-left: 50px;
+    min-height: calc(100% - 78px);
+}
+
+/* END MAP */
+
+
+/* WHEN THE SIDEBAR IS OPEN*/
+
+.content.open {
+    transform: translate3d(260px, 0, 0);
+}
+
+/* END WHEN THE SIDEBAR IS OPEN*/
+
+
+/* HAMBURGER BUTTON PANEL*/
+
+.content__hamburger-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 50px;
+    min-height: 100vh;
+    background: #f3f3f3;
+}
+
+/* END HAMBURGER BUTTON PANEL*/
+
+
+/* HAMBURGER BUTTON */
+
+#content__hamburger-button {
+    width: 32px;
+    height: 22px;
+    margin: 28px auto;
+    transform: rotate(0deg);
+    transition: .5s ease-in-out;
+    cursor: pointer;
+}
+#content__hamburger-button span {
+    display: block;
+    position: absolute;
+    height: 5px;
+    width: 100%;
+    background: #1abc9c;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .4s ease-in-out;
+}
+#content__hamburger-button span:nth-child(1) {
+    top: 0px;
+    transform-origin: left center;
+}
+#content__hamburger-button span:nth-child(2) {
+    top: 9px;
+    transform-origin: left center;
+}
+#content__hamburger-button span:nth-child(3) {
+    top: 18px;
+    transform-origin: left center;
+}
+#content__hamburger-button.open span:nth-child(1) {
+    transform: rotate(45deg);
+    top: -3px;
+    left: 5px;
+}
+#content__hamburger-button.open span:nth-child(2) {
+    width: 0%;
+    opacity: 0;
+}
+#content__hamburger-button.open span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 20px;
+    left: 5px;
+}
+
+/* END HAMBURGER BUTTON */
+
+
+/* INFO WINDOW OF THE MARKER (MAP) */
+
+.infoWindow {
+    display: flex;
+    margin: 5px 5px 0 0;
+    flex-direction: row;
+    min-width: 140px;
+}
+.infoWindow__image img {
+    border-radius: 5%;
+}
+.infoWindow__content {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    max-height: 100px;
+}
+.infoWindow__content img {
+    align-self: flex-start;
+    margin-bottom: auto;
+}
+.infoWindow__content a {
+    margin-top: auto;
+}
+@media (max-width: 340px) {
+    .infoWindow {
+        flex-direction: column;
+        width: 120px;
+    }
+    .infoWindow__image {
+        text-align: center;
+        padding-left: 25px;
+        margin-top: 10px;
+    }
+    .infoWindow__content {
+        min-height: 120px;
+    }
+    .infoWindow__content h2 {
+        font-size: 1.2em;
+        margin-top: 10px;
+    }
+}
+
+/* END INFO WINDOW OF THE MARKER (MAP) */
+
+
+/*************END****************
+* CONTENT (MAP) *
+**************END***************/
