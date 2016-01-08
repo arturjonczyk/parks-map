@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Warsaw Parks</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Warsaw Parks Map">
+	<meta name="author" content="Artur Jonczyk">
+	<title>Warsaw Parks Map</title>
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 	<!-- build:css -->
 	<link rel="stylesheet" href="styles/lib/normalize.css">
@@ -12,17 +15,20 @@
 	<link rel="stylesheet" href="styles/overlay.css">
 	<!-- endbuild -->
 </head>
+
 <body>
 	<div class="container">
+		<!-- List/Filter element -->
 		<div class="sidebar">
+			<!-- Filter element -->
 			<div class="sidebar-header">
 				<input data-bind="value: query, valueUpdate: 'keyup'">
 				<p class="filter" data-bind="css: {showAll: query().length > 0}">
 					<span data-bind="visible: query().length == 0">Filter</span>
 					<span class="" data-bind="visible: query().length > 0, click: showAll">Show All</span>
-
 				</p>
 			</div>
+			<!-- List View element -->
 			<div class="sidebar-content">
 				<ul data-bind="foreach: parks">
 					<li data-bind="visible: isVisible, click: showMarker">
@@ -31,24 +37,27 @@
 					</li>
 				</ul>
 			</div>
-
 		</div>
 		<div class="content" data-bind="css: {'open': isOpenLocationsList}">
+			<!-- Decorative element with hamburger button -->
 			<div class="content__hamburger-area">
 				<div id="content__hamburger-button" data-bind="click: toggleLocationsList, css: hamStyle">
-  					<span></span>
-  					<span></span>
-  					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
 				</div>
 			</div>
 			<div class="content-header">
-				<h1>Parks <span>Warsaw</span> </h1>
+				<h1>Parks
+					<span>Warsaw</span>
+				</h1>
 			</div>
+			<!-- Main interactive map -->
 			<div id="map" class="map">
 			</div>
 		</div>
 	</div>
-
+	<!-- Overlay element - hiden by default -->
 	<div id="overlay" class="overlay">
 		<div class="overlay__errorMessage">
 			<span class="button">&#10006;</span>
@@ -67,7 +76,8 @@
 	<script type="text/javascript" src="javascripts/appViewModel.js"></script>
 	<script type="text/javascript" src="javascripts/app.js"></script>
 	<!-- endbuild -->
-   	<script src="https://maps.googleapis.com/maps/api/js?callback=app.init" onerror=app.mapLoadError()></script>
+	<script src="https://maps.googleapis.com/maps/api/js?callback=app.init" onerror=app.mapLoadError()></script>
 
 </body>
+
 </html>

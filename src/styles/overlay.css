@@ -1,3 +1,7 @@
+/*************START****************
+* OVERLAY - overlay elemet for error messages *
+**************START***************/
+
 .overlay {
     position: absolute;
     top: 0px;
@@ -8,7 +12,6 @@
     transform: translate(0px, -1000px);
     will-change: transform;
 }
-
 .overlay__errorMessage {
     position: absolute;
     color: #f3f3f3;
@@ -16,25 +19,27 @@
     top: 50%;
     transform: translate(-50%, -50%);
 }
-
 .overlay__errorMessage .button {
-  display: inline-block;
-  position: absolute;
-  background: #f3f3f3;
-  border-radius: 50%;
-  color: #000000;
-  cursor: pointer;
-  height: 2em;
-  width: 2em;
-  line-height: 2;
-  right: -2em;
-  top: -2em;
-  text-align: center;
-  font-size: 1.2em;
+    display: inline-block;
+    position: absolute;
+    background: #f3f3f3;
+    border-radius: 50%;
+    color: #000000;
+    cursor: pointer;
+    height: 2em;
+    width: 2em;
+    line-height: 2;
+    right: -2em;
+    top: -2em;
+    text-align: center;
+    font-size: 1.2em;
+}
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.2em;
+    }
 }
 
-@media (max-width: 600px) {
-  h1 {
-    font-size: 1.2em;
-  }
-}
+/*************END****************
+* OVERLAY - overlay elemet for error messages *
+**************END***************/
