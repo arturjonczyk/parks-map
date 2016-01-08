@@ -1,0 +1,23 @@
+{
+  "name": "warsaw-parks-map",
+  "version": "1.0.0",
+  "description": "This is an interactive map of Parks and other green areas in Warsaw, Poland.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Artur Jonczyk",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.10.0",
+    "del": "^2.2.0",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-concat-css": "^2.2.0",
+    "gulp-css-condense": "^1.1.2",
+    "gulp-csslint": "^0.2.0",
+    "gulp-html-replace": "^1.5.5",
+    "gulp-purifycss": "^0.2.0",
+    "gulp-uglify": "^1.5.1",
+  }
+}
