@@ -13,7 +13,6 @@
 /*************START****************
 * GENERAL STYLES *
 **************START***************/
- *  */
 h1, h2, h3, h4, div, ul, li {
   margin: 0;
   padding: 0;
@@ -22,8 +21,6 @@ h1, h2, h3, h4, div, ul, li {
 
 /* Box-sizing border-box */
 * {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -84,11 +81,11 @@ h1, h2, h3, h4, div, ul, li {
   position: absolute;
   width: 260px;
   height: 100vh;
-  background: #FEFEFDc;
+  background: #FEFEFD;
 }
 
 .sidebar-content {
-  height: calc(100vh - 78px);
+  height: calc(100% - 78px);
   overflow-y: scroll;
   background: #FBFBFB;
 }
