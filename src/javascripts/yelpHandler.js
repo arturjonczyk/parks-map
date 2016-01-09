@@ -74,13 +74,13 @@ var yelp = function() {
             data: parameters,
             cache: true,
             dataType: 'jsonp',
-            async: true,
-            success: function(data) {
-                successBack(data);
-            },
-            error: function(e) {
-                errorBack(e);
-            }
+            async: true
+        })
+        .done(function (data) {
+            successBack(data);
+        })
+        .fail(function (e) {
+            errorBack(e);
         });
     };
 
