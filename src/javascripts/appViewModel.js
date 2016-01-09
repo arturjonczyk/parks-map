@@ -41,9 +41,7 @@ var appViewModel = function() {
             park.contentString(contentString);
 
             google.maps.event.addListener(park.marker, 'click', function() {
-                infowindow.open(map, this);
-                toggleBounce(park);
-                infowindow.setContent(park.contentString());
+                self.showMarker(park);
             });
         }
 
@@ -73,10 +71,10 @@ var appViewModel = function() {
     }
 
     // showing the info window element of marker.
-    self.showMarker = function() {
-        toggleBounce(this);
-        infowindow.setContent(this.contentString());
-        infowindow.open(map, this.marker);
+    self.showMarker = function(park) {
+        toggleBounce(park);
+        infowindow.setContent(park.contentString());
+        infowindow.open(map, park.marker);
     };
 
     // when the button 'Show All' is clicked, the input filter

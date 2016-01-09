@@ -1,4 +1,6 @@
 ## "Warsaw Parks Map".
+http://arturjonczyk.github.io/parks-map/dist/
+
 This is an interactive map of Parks and other green areas in Warsaw, Poland.
 
 This project is one of six projects to be performed during the course Front End Nanodegree provided by Udacity.com. This course prepares the student to a level of Front End (junior) Developer
@@ -7,6 +9,9 @@ This project is one of six projects to be performed during the course Front End 
 1. Download this project to your computer. To do that you either can clone the repository using GIT, or use the download ZIP link.
 2. Go to `parks-map-master/dist/` folder.
 3. Open the __index.html__ file within your browser (__modern browser__).
+
+or you can go to this website:
+http://arturjonczyk.github.io/parks-map/dist/
 
 ### Credits & Resources
 - https://discussions.udacity.com/c/nd001-project-5-neighborhood-map-project
