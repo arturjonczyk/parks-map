@@ -72,7 +72,7 @@ gulp.task('css', function () {
 			   .pipe(purify(['./src/index.html', './src/javascripts/appViewModel.js']))
 			   .pipe(cssc())
 			   .pipe(gulp.dest('./dist/css/'));
-})
+});
 // END CSS - SECTION //
 
 // JAVASCRIPT - SECTION
@@ -80,7 +80,7 @@ gulp.task('concatjs', function () {
 	return gulp.src(paths.scripts)
 			   .pipe(concatjs('all.min.js'))
 			   .pipe(gulp.dest('./dist/js/'));
-})
+});
 
 gulp.task('uglify', function() {
 	return gulp.src('./dist/js/all.min.js')
@@ -93,7 +93,7 @@ gulp.task('js', function () {
 			   .pipe(concatjs('all.min.js'))
 			   .pipe(uglify())
 			   .pipe(gulp.dest('dist/js/'));
-})
+});
 
 // END JAVASCRIPT - SECTION
 
@@ -102,7 +102,7 @@ gulp.task('repTags', function() {
 	return gulp.src(paths.app)
 			   .pipe(htmlreplace({
 			   		'css': '<link href="css/styles.min.css" rel="stylesheet">',
-			   		'js': '<script src="js/all.min.js"></script>'
+			   		'js': '<script src="js/all.min.js" async></script>'
 			   	}))
 			   .pipe(gulp.dest('dist/'));
 	});
