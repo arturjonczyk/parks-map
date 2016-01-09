@@ -102,7 +102,7 @@ gulp.task('repTags', function() {
 	return gulp.src(paths.app)
 			   .pipe(htmlreplace({
 			   		'css': '<link href="css/styles.min.css" rel="stylesheet">',
-			   		'js': '<script src="js/all.min.js" async></script>'
+			   		'js': '<script src="js/all.min.js"></script>'
 			   	}))
 			   .pipe(gulp.dest('dist/'));
 	});
